@@ -1,4 +1,4 @@
-package com.openlab.edition.domaine.model;
+package com.openlab.edition.domaine.auteur;
 
 public class Skills {
     private final  int id;

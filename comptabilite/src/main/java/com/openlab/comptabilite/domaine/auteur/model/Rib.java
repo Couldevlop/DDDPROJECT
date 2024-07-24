@@ -1,4 +1,4 @@
-package com.openlab.comptabilite.domaine.model;
+package com.openlab.comptabilite.domaine.auteur.model;
 
 public class Rib {
     private final Long idRib;

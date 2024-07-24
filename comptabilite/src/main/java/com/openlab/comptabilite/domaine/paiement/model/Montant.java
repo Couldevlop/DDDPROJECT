@@ -1,4 +1,4 @@
-package com.openlab.comptabilite.domaine.model;
+package com.openlab.comptabilite.domaine.paiement.model;
 
 public class Montant {
     private final Long idMontant;

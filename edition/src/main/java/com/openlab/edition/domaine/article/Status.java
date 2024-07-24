@@ -1,4 +1,4 @@
-package com.openlab.edition.domaine.model.article;
+package com.openlab.edition.domaine.article;
 
 public enum Status {
     publier,
