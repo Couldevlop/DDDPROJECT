@@ -22,7 +22,7 @@ public class ContenuRepositoryAdaptateur implements ContenuProvider {
     }
 
     @Override
-    public Optional<Contenu> findById(long id) {
+    public Optional<Contenu> findById(Long id) {
         return jpaContenuRepository.findById(id);
     }
 

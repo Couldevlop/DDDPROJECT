@@ -1,5 +1,8 @@
 package com.openlab.edition.domaine.auteur;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Skills {
     private final  int id;
     private final String name;

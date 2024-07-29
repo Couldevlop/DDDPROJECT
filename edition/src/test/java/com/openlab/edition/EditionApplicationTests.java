@@ -78,7 +78,7 @@ class EditionApplicationTests {
 	public void testCreateCoursWithSkills(){
 		//given
 		Auteur auteur = new Auteur();
-		auteur.setIdAuteur(1L);
+		auteur.setId(1L);
 		auteur.setEmail("coulwao@gmail.com");
 		auteur.setName("COULIBALY WAOPRON");
 

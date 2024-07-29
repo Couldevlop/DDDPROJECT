@@ -24,7 +24,7 @@ public class EditeurRepositoryAdaptateur implements EditeurProvider {
     }
 
     @Override
-    public Optional<Editeur> findById(long id) {
+    public Optional<Editeur> findById(Long id) {
         return jpaEditeurRepository.findById(id);
     }
 }

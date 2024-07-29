@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface EditeurProvider {
     Editeur save(Editeur editeur);
-    Optional<Editeur> findById(long id);
+    Optional<Editeur> findById(Long id);
 }

@@ -54,11 +54,11 @@ public class EditionService {
     }
 
 
-    public void validerContenu(Long contenuId){
+    public void validerContenu(Long editeurId, Long contenuId){
+        Editeur editeur = Editeur.findById(editeurProvider, editeurId).orElseThrow();
         Contenu contenu = Contenu.findById(contenuProvider, contenuId).orElseThrow();
-        contenu.setStatus(Status.PUBLIE);
-        contenu.register(contenuProvider);
-        emailService.envoyerNotificationSansPieces(contenu.getAuteur().getEmail(), "notification", "votre contenu a été publié");
+        editeur.validerContenu(contenuProvider, contenu);
+        editeur.notifierAuteur(emailService, contenu.getAuteur().getEmail(),  "Votre contenu a été rejeté : ");
     }
 
 
@@ -73,4 +73,6 @@ public class EditionService {
         editeur.rejeterContenu(contenuProvider, contenu, commentaire, commentaireProvider);
         editeur.notifierAuteur(emailService, contenu.getAuteur().getEmail(), "Votre contenu a été rejeté : " + commentaire);
     }
+
+
 }

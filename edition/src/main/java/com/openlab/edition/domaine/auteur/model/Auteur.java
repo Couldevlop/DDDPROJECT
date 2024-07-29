@@ -4,8 +4,7 @@ package com.openlab.edition.domaine.auteur.model;
 
 import com.openlab.edition.domaine.auteur.AuteurProvider;
 import com.openlab.edition.domaine.auteur.Skills;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,9 @@ import java.util.Optional;
 @NoArgsConstructor
 @Entity
 public class Auteur {
-    private Long idAuteur;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ElementCollection
     private List<Skills> skills;
     private String name;

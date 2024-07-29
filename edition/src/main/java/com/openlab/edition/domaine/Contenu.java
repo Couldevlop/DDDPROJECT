@@ -4,10 +4,7 @@ import com.openlab.edition.domaine.article.Status;
 import com.openlab.edition.domaine.auteur.model.Auteur;
 import com.openlab.edition.domaine.commentaire.CommentaireProvider;
 import com.openlab.edition.domaine.commentaire.model.Commentaire;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +19,8 @@ import java.util.Optional;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Contenu {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private Status status;
@@ -44,6 +43,6 @@ public abstract class Contenu {
 
     public void commenter(CommentaireProvider commentaireProvider, Commentaire commentaire){
         commentaire.setContenu(this);
-        commentaireProvider.register(commentaire);
+        commentaireProvider.save(commentaire);
     }
 }

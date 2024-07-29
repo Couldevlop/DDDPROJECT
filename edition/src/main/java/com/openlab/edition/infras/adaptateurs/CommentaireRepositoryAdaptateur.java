@@ -18,7 +18,7 @@ public class CommentaireRepositoryAdaptateur implements CommentaireProvider {
     }
 
     @Override
-    public Commentaire register(Commentaire commentaire) {
+    public Commentaire save(Commentaire commentaire) {
         return jpaCommentaireRepository.save(commentaire);
     }
 

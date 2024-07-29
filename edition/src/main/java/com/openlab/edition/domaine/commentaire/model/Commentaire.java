@@ -3,8 +3,7 @@ package com.openlab.edition.domaine.commentaire.model;
 import com.openlab.edition.domaine.Contenu;
 import com.openlab.edition.domaine.auteur.model.Auteur;
 import com.openlab.edition.domaine.commentaire.CommentaireProvider;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +17,8 @@ import java.util.Optional;
 @NoArgsConstructor
 @Entity
 public class Commentaire {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String texte;
     @ManyToOne
@@ -28,7 +29,7 @@ public class Commentaire {
 
 
     public Commentaire register(CommentaireProvider commentaireProvider){
-        return commentaireProvider.register(this);
+        return commentaireProvider.save(this);
     }
 
     public static Optional<Commentaire> findBy(CommentaireProvider commentaireProvider, Long id){
