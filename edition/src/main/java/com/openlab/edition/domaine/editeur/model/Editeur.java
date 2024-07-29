@@ -47,7 +47,7 @@ public static Optional<Editeur> findById(EditeurProvider editeurProvider, Long i
     }
 
     public void rejeterContenu(ContenuProvider contenuProvider, Contenu contenu, String commentaire, CommentaireProvider commentaireProvider) {
-        contenu.setStatus(Status.NON_PUBLIE);
+        //contenu.setStatus(Status.NON_PUBLIE);
         contenu.register(contenuProvider);
 
         Commentaire rejectionCommentaire = new Commentaire();

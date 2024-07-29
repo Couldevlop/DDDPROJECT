@@ -13,9 +13,12 @@ import com.openlab.edition.domaine.commentaire.model.Commentaire;
 import com.openlab.edition.domaine.editeur.EditeurProvider;
 import com.openlab.edition.infras.adaptateurs.EditeurRepositoryAdaptateur;
 import com.openlab.edition.infras.config.EmailService;
+import com.openlab.edition.infras.repository.JpaEditeurRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.KafkaTemplate;
 
@@ -24,7 +27,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-@SpringBootTest(classes = EditeurTest.class)
+//@SpringBootTest(classes = EditeurTest.class)
+@ExtendWith(MockitoExtension.class)
 class EditeurTest {
     @Mock
     private  EditeurProvider editeurProvider;
@@ -40,10 +44,9 @@ class EditeurTest {
     private EmailService emailService;
 
     @Mock
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private JpaEditeurRepository jpaEditeurRepository;
 
-
-    @Mock
+    @InjectMocks
     private EditeurRepositoryAdaptateur editeurRepositoryAdaptateur;
 
     @InjectMocks
@@ -72,24 +75,26 @@ class EditeurTest {
     }
 
 
-   /* @Test
+   @Test
     void findById() {
+//given
+       Editeur editeur = new Editeur();
+       editeur.setId(1L);
+       editeur.setName("Test Editeur");
+       editeur.setEmail("editeur@test.com");
 
+       //when
+       when(jpaEditeurRepository.findById(1L)).thenReturn(Optional.of(editeur));
 
-        //given
-        Editeur editeur = new Editeur();
-        editeur.setId(1L);
-        editeur.setName("HORIZON");
-        editeur.setEmail("horizon@gmail.com");
+       Optional<Editeur> resultat = editeurRepositoryAdaptateur.findById(1L);
 
+       //then
+       assertTrue(resultat.isPresent());
+       assertEquals("Test Editeur", resultat.get().getName());
+       assertEquals("editeur@test.com", resultat.get().getEmail());
+       verify(jpaEditeurRepository, times(1)).findById(1L);
+   }
 
-        //when
-        when(editeurProvider.findById(anyLong())).thenReturn(Optional.of(editeur));
-        editeurRepositoryAdaptateur.findById(editeur.getId());
-
-        // then
-        verify(editeurProvider, times(1)).findById(anyLong());
-    }*/
 
     @Test
     public void testValiderContenu(){
@@ -100,9 +105,10 @@ class EditeurTest {
         Contenu contenu = new Article();
 
         contenu.setId(1L);
+        editeur.setEmail("editeur@test.com");
         contenu.setTitle("Test Article");
         contenu.setContent("Ceci est un test.");
-        contenu.setStatus(Status.PUBLIE);
+        contenu.setStatus(Status.NON_PUBLIE);
 
         Auteur auteur = new Auteur();
         contenu.setAuteur(auteur);
@@ -113,10 +119,10 @@ class EditeurTest {
 
         editionService.validerContenu(1L, 1L);
 
-        //Then
-        assertEquals("PUBLIE", contenu.getStatus());
+        //then
+        assertEquals(Status.PUBLIE, contenu.getStatus());
         verify(contenuProvider, times(1)).save(contenu);
-        verify(emailService, times(1)).envoyerNotificationSansPieces(anyString(), anyString(),anyString());
+        verify(emailService, times(1)).envoyerNotificationSansPieces(eq("editeur@test.com"), eq("Notification"), anyString());
     }
 
     @Test
@@ -124,7 +130,7 @@ class EditeurTest {
         // given
         Editeur editeur = new Editeur();
         editeur.setId(1L);
-        editeur.setEmail("coulwao@gmail.com");
+        editeur.setEmail("editeur@test.com");
         editeur.setName("HORIZON");
 
         Contenu contenu = new Article();
@@ -141,10 +147,10 @@ class EditeurTest {
         editionService.rejeterContenu(1L, 1L,"Votre contenu manque d'originalité.");
 
         //Then
-        assertEquals("REJETE", contenu.getStatus());
+        assertEquals(Status.REJETE, contenu.getStatus());
         verify(contenuProvider, times(1)).save(contenu);
         verify(commentaireProvider, times(1)).save(any(Commentaire.class));
-        verify(emailService, times(1)).envoyerNotificationSansPieces(anyString(),anyString(),anyString());
+        verify(emailService, times(1)).envoyerNotificationSansPieces(eq("editeur@test.com"), eq("Notification"), anyString());
     }
 
 }

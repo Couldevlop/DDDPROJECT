@@ -33,10 +33,6 @@ public class EditionService {
         this.emailService = emailService;
     }
 
-    public void createEditeur(Editeur editeur){
-        editeur.register(editeurProvider);
-    }
-
 
     public void createArticle(Article article){
         article.register(contenuProvider);

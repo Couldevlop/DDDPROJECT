@@ -4,10 +4,11 @@ import com.openlab.edition.domaine.ContenuProvider;
 import com.openlab.edition.domaine.Contenu;
 import com.openlab.edition.infras.repository.JpaContenuRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component
+@Service
 public class ContenuRepositoryAdaptateur implements ContenuProvider {
 
     private final JpaContenuRepository jpaContenuRepository;

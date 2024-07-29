@@ -4,11 +4,12 @@ import com.openlab.edition.domaine.editeur.EditeurProvider;
 import com.openlab.edition.domaine.editeur.model.Editeur;
 import com.openlab.edition.infras.repository.JpaEditeurRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 import java.util.Optional;
 
-@Component
+@Service
 public class EditeurRepositoryAdaptateur implements EditeurProvider {
 
 

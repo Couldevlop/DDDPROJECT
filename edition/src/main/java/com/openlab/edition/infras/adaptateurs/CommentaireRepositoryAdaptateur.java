@@ -4,10 +4,11 @@ import com.openlab.edition.domaine.commentaire.CommentaireProvider;
 import com.openlab.edition.domaine.commentaire.model.Commentaire;
 import com.openlab.edition.infras.repository.JpaCommentaireRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component
+@Service
 public class CommentaireRepositoryAdaptateur implements CommentaireProvider {
 
 

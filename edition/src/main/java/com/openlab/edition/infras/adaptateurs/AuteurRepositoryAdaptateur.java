@@ -4,11 +4,12 @@ import com.openlab.edition.domaine.auteur.AuteurProvider;
 import com.openlab.edition.domaine.auteur.model.Auteur;
 import com.openlab.edition.infras.repository.JpaAuteurRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 import java.util.Optional;
 
-@Component
+@Service
 public class AuteurRepositoryAdaptateur implements AuteurProvider {
 
 
