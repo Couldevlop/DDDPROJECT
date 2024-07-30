@@ -1,16 +1,13 @@
-package com.openlab.edition.domaine.cours.model;
+package com.openlab.edition.infras.entities;
 
-import com.openlab.edition.domaine.Contenu;
-import com.openlab.edition.domaine.auteur.model.Auteur;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class Cours extends Contenu {
+@Entity
+public class CoursEntity extends ContenuEntity {
     private String subject;
 
     public boolean verifySkillsAuteur(){

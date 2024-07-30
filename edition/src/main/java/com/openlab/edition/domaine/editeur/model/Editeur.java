@@ -24,10 +24,7 @@ import java.util.Optional;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Editeur {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String name;
@@ -57,7 +54,12 @@ public static Optional<Editeur> findById(EditeurProvider editeurProvider, Long i
         rejectionCommentaire.register(commentaireProvider);
     }
 
+
+
+
     public void notifierAuteur(EmailService emailService, String email, String message) {
         emailService.envoyerNotificationSansPieces(this.email,"Notification", message);
     }
+
+
 }

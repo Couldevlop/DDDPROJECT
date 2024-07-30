@@ -14,6 +14,8 @@ import com.openlab.edition.infras.config.EmailService;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EditionService {
     private final AuteurProvider auteurProvider;
@@ -50,12 +52,23 @@ public class EditionService {
     }
 
 
-    public void validerContenu(Long editeurId, Long contenuId){
-        Editeur editeur = Editeur.findById(editeurProvider, editeurId).orElseThrow();
-        Contenu contenu = Contenu.findById(contenuProvider, contenuId).orElseThrow();
-        editeur.validerContenu(contenuProvider, contenu);
-        editeur.notifierAuteur(emailService, contenu.getAuteur().getEmail(),  "Votre contenu a été rejeté : ");
+
+
+    public void validerContenu(Long editeurId, Long contenuId) {
+        Optional<Editeur> editeur = editeurProvider.findById(editeurId);
+        Optional<Contenu> contenu = contenuProvider.findById(contenuId);
+
+        if (editeur.isPresent() && contenu.isPresent()) {
+            editeur.get().validerContenu(contenuProvider, contenu.get());
+            contenuProvider.save(contenu.get());
+            emailService.envoyerNotificationSansPieces(
+                    contenu.get().getAuteur().getEmail(),
+                    "Contenu validé",
+                    "Votre contenu a été validé et publié."
+            );
+        }
     }
+
 
 
     public void commenterContenu(Long contenuId, Commentaire commentaire){
@@ -63,11 +76,21 @@ public class EditionService {
         contenu.commenter(commentaireProvider, commentaire);
     }
 
+
+
     public void rejeterContenu(Long editeurId, Long contenuId, String commentaire) {
-        Editeur editeur = Editeur.findById(editeurProvider, editeurId).orElseThrow();
-        Contenu contenu = Contenu.findById(contenuProvider, contenuId).orElseThrow();
-        editeur.rejeterContenu(contenuProvider, contenu, commentaire, commentaireProvider);
-        editeur.notifierAuteur(emailService, contenu.getAuteur().getEmail(), "Votre contenu a été rejeté : " + commentaire);
+        Optional<Editeur> editeur = editeurProvider.findById(editeurId);
+        Optional<Contenu> contenu = contenuProvider.findById(contenuId);
+
+        if (editeur.isPresent() && contenu.isPresent()) {
+            editeur.get().rejeterContenu(contenuProvider,contenu.get(), commentaire, commentaireProvider);
+            contenuProvider.save(contenu.get());
+            emailService.envoyerNotificationSansPieces(
+                    contenu.get().getAuteur().getEmail(),
+                    "Contenu rejeté",
+                    "Votre contenu a été rejeté avec le commentaire suivant : " + commentaire
+            );
+        }
     }
 
 

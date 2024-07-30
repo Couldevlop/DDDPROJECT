@@ -1,7 +1,7 @@
-package com.openlab.edition.domaine;
+package com.openlab.edition.infras.entities;
 
+import com.openlab.edition.domaine.ContenuProvider;
 import com.openlab.edition.domaine.article.Status;
-import com.openlab.edition.domaine.auteur.model.Auteur;
 import com.openlab.edition.domaine.commentaire.CommentaireProvider;
 import com.openlab.edition.domaine.commentaire.model.Commentaire;
 import jakarta.persistence.*;
@@ -16,8 +16,11 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-public abstract class Contenu {
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class ContenuEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private Status status;
@@ -28,18 +31,4 @@ public abstract class Contenu {
     private Auteur auteur;
 
 
-
-    public Contenu register(ContenuProvider contenuProvider){
-        return contenuProvider.save(this);
-    }
-
-    public static Optional<Contenu> findById(ContenuProvider contenuProvider, Long id){
-        return contenuProvider.findById(id);
-    }
-
-
-    public void commenter(CommentaireProvider commentaireProvider, Commentaire commentaire){
-        commentaire.setContenu(this);
-        commentaireProvider.save(commentaire);
-    }
 }

@@ -1,9 +1,10 @@
 package com.openlab.edition.infras.repository;
 
-import com.openlab.edition.domaine.editeur.model.Editeur;
+
+import com.openlab.edition.infras.entities.EditeurEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-public interface JpaEditeurRepository extends JpaRepository<Editeur, Long> {
+public interface JpaEditeurRepository extends JpaRepository<EditeurEntity, Long> {
 }
