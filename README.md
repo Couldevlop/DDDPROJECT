@@ -124,18 +124,18 @@ services:
 # Commandes Docker
 ---------------------------------------------------------------------------
 
- #1. Arrêtez les conteneurs existants :
-    docker-compose down
+ 1. Arrêtez les conteneurs existants :
+    #docker-compose down
     
-#2. Supprimez les volumes Docker (optionnel, pour une réinitialisation complète) :
-    docker volume prune
+2. Supprimez les volumes Docker (optionnel, pour une réinitialisation complète) :
+    #docker volume prune
     
-#3. Lancez les nouveaux conteneurs :#
-    docker-compose up -d
+3. Lancez les nouveaux conteneurs :
+    #docker-compose up -d
     
-#4. Examinez les logs des conteneurs pour obtenir plus de détails sur les erreurs éventuelles :
-    docker-compose logs kafka
-    docker-compose logs kafdrop
+4. Examinez les logs des conteneurs pour obtenir plus de détails sur les erreurs éventuelles :
+    #docker-compose logs kafka
+    #docker-compose logs kafdrop
     
 #5. Assurez-vous que le nom d'hôte kafka peut être résolu correctement au sein du réseau Docker. Vous pouvez vérifier les noms d'hôte et les adresses IP des conteneurs en utilisant :
 docker network inspect kafka_network
