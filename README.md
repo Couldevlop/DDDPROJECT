@@ -125,7 +125,7 @@ services:
 ---------------------------------------------------------------------------
 
  1. Arrêtez les conteneurs existants :
-    ##docker-compose down
+    docker-compose down
     
 2. Supprimez les volumes Docker (optionnel, pour une réinitialisation complète) :
     docker volume prune
