@@ -49,8 +49,8 @@ public static Optional<Editeur> findById(EditeurProvider editeurProvider, Long i
 
         Commentaire rejectionCommentaire = new Commentaire();
         rejectionCommentaire.setTexte(commentaire);
-        rejectionCommentaire.setAuteur(contenu.getAuteur());
-        rejectionCommentaire.setContenu(contenu);
+        rejectionCommentaire.setAuteurId(contenu.getAuteur().getId());
+        rejectionCommentaire.setContenuId(contenu.getId());
         rejectionCommentaire.register(commentaireProvider);
     }
 

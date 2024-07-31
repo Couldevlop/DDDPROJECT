@@ -20,6 +20,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "auteur")
 public class AuteurEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

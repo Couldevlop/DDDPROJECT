@@ -1,19 +1,14 @@
-package com.openlab.edition.infras.dtos;
-
+package com.openlab.edition.domaine.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EditeurDTO {
-    private Long id;
-    private String name;
-    private String email;
-
-
+public class ContenuSubmittedEvent {
+    private Long contenuId;
 }

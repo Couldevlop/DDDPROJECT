@@ -39,7 +39,7 @@ public abstract class Contenu {
 
 
     public void commenter(CommentaireProvider commentaireProvider, Commentaire commentaire){
-        commentaire.setContenu(this);
+        commentaire.setContenuId(this.getId());
         commentaireProvider.save(commentaire);
     }
 }

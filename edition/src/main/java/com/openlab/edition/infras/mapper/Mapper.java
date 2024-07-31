@@ -62,22 +62,49 @@ public class Mapper {
         entity.setName(auteur.getName());
         return entity;
     }
-    public static CommentaireEntity toEntity(Commentaire commentaire) {
-        CommentaireEntity entity = new CommentaireEntity();
-        entity.setId(commentaire.getId());
-        entity.setAuteur(commentaire.getAuteur());
-        entity.setContenu(commentaire.getContenu());
-        entity.setTexte(commentaire.getTexte());
-        return entity;
+
+
+    // Mapping from CommentaireDTO to Commentaire (domain model)
+    public static Commentaire toDomain(CommentaireDTO dto) {
+        Commentaire commentaire = new Commentaire();
+        commentaire.setId(dto.getId());
+        commentaire.setContenuId(dto.getContenuId());
+        commentaire.setTexte(dto.getTexte());
+        commentaire.setAuteurId(dto.getAuteurId());
+        commentaire.setDateCreation(dto.getDateCreation());
+        return commentaire;
+    }
+    // Mapping from Commentaire (domain model) to CommentaireDTO
+    public static CommentaireDTO toDTO(Commentaire commentaire) {
+        CommentaireDTO dto = new CommentaireDTO();
+        dto.setId(commentaire.getId());
+        dto.setContenuId(commentaire.getContenuId());
+        dto.setTexte(commentaire.getTexte());
+        dto.setAuteurId(commentaire.getAuteurId());
+        dto.setDateCreation(commentaire.getDateCreation());
+        return dto;
     }
 
+    // Mapping from CommentaireEntity to Commentaire (domain model)
     public static Commentaire toDomain(CommentaireEntity entity) {
         Commentaire commentaire = new Commentaire();
         commentaire.setId(entity.getId());
-        commentaire.setAuteur(entity.getAuteur());
+        commentaire.setContenuId(entity.getContenuId());
         commentaire.setTexte(entity.getTexte());
-        commentaire.setContenu(entity.getContenu());
+        commentaire.setAuteurId(entity.getAuteurId());
+        commentaire.setDateCreation(entity.getDateCreation());
         return commentaire;
+    }
+
+    // Mapping from Commentaire (domain model) to CommentaireEntity
+    public static CommentaireEntity toEntity(Commentaire commentaire) {
+        CommentaireEntity entity = new CommentaireEntity();
+        entity.setId(commentaire.getId());
+        entity.setContenuId(commentaire.getContenuId());
+        entity.setTexte(commentaire.getTexte());
+        entity.setAuteurId(commentaire.getAuteurId());
+        entity.setDateCreation(commentaire.getDateCreation());
+        return entity;
     }
 
     public static EditeurDTO toDTO(Editeur editeur) {

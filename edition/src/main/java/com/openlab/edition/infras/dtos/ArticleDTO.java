@@ -17,9 +17,8 @@ import lombok.Setter;
 })
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class ArticleDTO extends ContenuDTO {
-    // Champs spécifiques à ArticleDTO
+
 }
 

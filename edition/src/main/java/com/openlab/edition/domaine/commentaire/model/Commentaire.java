@@ -9,22 +9,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+
 public class Commentaire {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String texte;
-    @ManyToOne
-    private Auteur auteur;
-    @ManyToOne
-    private Contenu contenu;
+
+    private Long auteurId;
+
+    private Long contenuId;
+    private LocalDateTime dateCreation;
 
 
 

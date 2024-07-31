@@ -84,7 +84,7 @@ class EditeurTest {
        editeur.setEmail("editeur@test.com");
 
        //when
-       when(jpaEditeurRepository.findById(1L)).thenReturn(Optional.of(editeur));
+       //when(jpaEditeurRepository.findById(1L)).thenReturn(Optional.of(editeur));
 
        Optional<Editeur> resultat = editeurRepositoryAdaptateur.findById(1L);
 

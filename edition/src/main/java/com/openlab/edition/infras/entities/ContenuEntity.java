@@ -17,6 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "contenu")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class ContenuEntity {
     @Id
@@ -28,7 +29,7 @@ public abstract class ContenuEntity {
     private String domaine;
     private int nbrVues;
     @ManyToOne
-    private Auteur auteur;
+    private AuteurEntity auteur;
 
 
 }
