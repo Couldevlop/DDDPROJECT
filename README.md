@@ -69,7 +69,7 @@ Ce projet est une application directe de l'approche DDD
 ## CONFIGURATION DE KAFHA ##
 ### Via docker-compose ###
 
-version: '3.8'
+```version: '3.8'
 
 networks:
   kafka_network:
@@ -120,20 +120,20 @@ services:
     networks:
       - kafka_network
 ### Commandes Docker ###
-  # 1. Arrêtez les conteneurs existants :#
+ ### 1. Arrêtez les conteneurs existants :
     docker-compose down
     
-   # 2. Supprimez les volumes Docker (optionnel, pour une réinitialisation complète) :#
+### 2. Supprimez les volumes Docker (optionnel, pour une réinitialisation complète) :
     docker volume prune
     
-   # 3. Lancez les nouveaux conteneurs :#
+### 3. Lancez les nouveaux conteneurs :#
     docker-compose up -d
     
-  # 4. Examinez les logs des conteneurs pour obtenir plus de détails sur les erreurs éventuelles :#
+### 4. Examinez les logs des conteneurs pour obtenir plus de détails sur les erreurs éventuelles :
     docker-compose logs kafka
     docker-compose logs kafdrop
     
-# Assurez-vous que le nom d'hôte kafka peut être résolu correctement au sein du réseau Docker. Vous pouvez vérifier les noms d'hôte et les adresses IP des conteneurs en utilisant :
+### Assurez-vous que le nom d'hôte kafka peut être résolu correctement au sein du réseau Docker. Vous pouvez vérifier les noms d'hôte et les adresses IP des conteneurs en utilisant :
 docker network inspect kafka_network
 
 
