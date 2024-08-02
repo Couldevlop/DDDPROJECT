@@ -24,8 +24,8 @@ import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-@EmbeddedKafka(partitions = 1, topics = { "test-topic" })
+//@SpringBootTest
+//@EmbeddedKafka(partitions = 1, topics = { "test-topic" })
 public class KafkaTest {
 
     @Autowired

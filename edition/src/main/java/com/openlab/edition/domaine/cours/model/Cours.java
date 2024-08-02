@@ -10,8 +10,12 @@ import lombok.Setter;
 
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cours extends Contenu {
+    private String niveau;
     private String subject;
+    private String description;
 
     public boolean verifySkillsAuteur(){
         Auteur auteur = this.getAuteur();

@@ -29,7 +29,9 @@ public abstract class ContenuEntity {
     private String domaine;
     private int nbrVues;
     @ManyToOne
-    private AuteurEntity auteur;
+    private AuteurEntity auteurId;
+
+
 
 
 }

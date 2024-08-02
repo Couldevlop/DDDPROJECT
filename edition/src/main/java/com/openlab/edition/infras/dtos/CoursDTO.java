@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CoursDTO extends ContenuDTO {
     private String niveau;
+    private String description;
+    private String subject;
 
     // Getters and setters
 }

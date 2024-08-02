@@ -3,7 +3,9 @@ package com.openlab.edition.infras.controllers;
 import com.openlab.edition.domaine.Contenu;
 import com.openlab.edition.domaine.ContenuProvider;
 import com.openlab.edition.domaine.article.model.Article;
+import com.openlab.edition.domaine.auteur.model.Auteur;
 import com.openlab.edition.domaine.cours.model.Cours;
+import com.openlab.edition.infras.adaptateurs.AuteurRepositoryAdaptateur;
 import com.openlab.edition.infras.adaptateurs.ContenuRepositoryAdaptateur;
 import com.openlab.edition.infras.dtos.ArticleDTO;
 import com.openlab.edition.infras.dtos.ContenuDTO;
@@ -20,24 +22,31 @@ import java.util.Optional;
 public class ContenuController {
 
     private final ContenuRepositoryAdaptateur contenuRepositoryAdaptateur;
+    private final AuteurRepositoryAdaptateur auteurRepositoryAdaptateur;
 
-    public ContenuController(ContenuRepositoryAdaptateur contenuRepositoryAdaptateur) {
+    public ContenuController(ContenuRepositoryAdaptateur contenuRepositoryAdaptateur, AuteurRepositoryAdaptateur auteurRepositoryAdaptateur) {
         this.contenuRepositoryAdaptateur = contenuRepositoryAdaptateur;
+        this.auteurRepositoryAdaptateur = auteurRepositoryAdaptateur;
     }
 
 
     @PostMapping("/article")
-    public ResponseEntity<ArticleDTO> createContenuArticle(@RequestBody Contenu contenu) {
-        Contenu savedContenu = contenuRepositoryAdaptateur.save(contenu);
+    public ResponseEntity<ArticleDTO> createContenuArticle(@RequestBody ArticleDTO articleDTO, @RequestParam Long auteurId) {
+        Contenu article = Mapper.toDomain(articleDTO);
+        Optional<Auteur> auteur = auteurRepositoryAdaptateur.findById(auteurId);
+        auteur.ifPresent(article::setAuteur);
+        Contenu savedContenu = contenuRepositoryAdaptateur.save(article);
+
         return ResponseEntity.ok((ArticleDTO) Mapper.toDTO(savedContenu));
     }
 
-
     @PostMapping("/cours")
-    public ResponseEntity<CoursDTO> createContenuCours(@RequestBody Contenu contenu) {
-        Contenu savedContenu = contenuRepositoryAdaptateur.save(contenu);
+    public ResponseEntity<CoursDTO> createContenuCours(@RequestBody CoursDTO coursDTO) {
+        Contenu cours = Mapper.toDomain(coursDTO);
+        Contenu savedContenu = contenuRepositoryAdaptateur.save(cours);
         return ResponseEntity.ok((CoursDTO) Mapper.toDTO(savedContenu));
     }
+
 
    /* @GetMapping("/{id}")
     public ResponseEntity<ContenuEntity> getContenuById(@PathVariable Long id) {

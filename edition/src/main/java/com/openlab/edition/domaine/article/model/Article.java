@@ -7,7 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Article extends Contenu {
 
 }

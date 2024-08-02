@@ -16,7 +16,6 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public abstract class Contenu {
     private Long id;
     private String title;

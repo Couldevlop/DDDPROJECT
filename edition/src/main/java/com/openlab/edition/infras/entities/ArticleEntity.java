@@ -4,7 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 
-@Table(name = "article")
+//@Table(name = "article")
+@Entity
 public class ArticleEntity extends ContenuEntity {
 
 }

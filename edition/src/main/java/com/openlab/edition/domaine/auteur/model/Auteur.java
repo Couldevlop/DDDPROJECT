@@ -21,7 +21,6 @@ import java.util.Optional;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Auteur {
     private Long id;
     @ElementCollection

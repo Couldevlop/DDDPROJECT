@@ -34,7 +34,7 @@ public class AuteurRepositoryAdaptateur implements AuteurProvider {
 
     @Override
     public Optional<Auteur> findById(long id) {
-        return Optional.empty();
+        return jpaAuteurRepository.findById(id).map(Mapper::toDomain);
     }
 
     @Override

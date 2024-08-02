@@ -10,9 +10,9 @@ import lombok.Setter;
 @Table(name = "cours")
 public class CoursEntity extends ContenuEntity {
     private String subject;
-
+    private String description;
     public boolean verifySkillsAuteur(){
-        AuteurEntity auteur = this.getAuteur();
+        AuteurEntity auteur = this.getAuteurId();
         return   auteur.getSkills().contains(this.subject);
     }
 }
